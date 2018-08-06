@@ -1,0 +1,34 @@
+#article{
+	text-align: center
+}
+.media{
+	width: 300px;
+}
+
+@keyframes filling {
+  from{
+    background-position: center 25%;
+  }
+  to {
+    background-position: center 50%;
+  }
+}
+
+.container-text {
+  background-image:  url(https://static.pexels.com/photos/4827/nature-forest-trees-fog.jpeg);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color:  #FFFFFF;
+  padding-top: 20px;
+  font-size: 150px;
+  font-family: 'Bungee', cursive;
+  animation: filling 3s ease forwards;
+  text-align: center;
+}
+.media-object{
+	width: 72px; height: 72px;
+}
+#erreur{
+	width: 30%;
+	 margin: 10% auto;
+}

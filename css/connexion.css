@@ -1,0 +1,40 @@
+.panel-heading {
+    padding-left: 1%;
+    padding-bottom: 5%;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.7em;
+   
+	
+}
+
+.panel-footer {
+	color: #A0A0A0;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+.container{
+	margin-top:40px
+}
+.center-block{
+	margin: auto 26%;
+}
+#formulaire{
+	margin: 10% auto;
+}
+.text-danger{
+	font-size: 20px;
+}
+.btn{
+    background-color:#44811a !important;
+    color:#ffffff !important;
+    font-weight: bold !important;
+}
+

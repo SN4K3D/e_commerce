@@ -1,0 +1,135 @@
+body {
+  background-image: url(image/fondgris.jpg);
+
+
+}
+
+p.titre {
+  background: #DED983;
+  color: #345071;
+  padding: .2em .3em;
+  font-size: 1.2em;
+  border: 2px outset #DED983;
+  position: relative;
+  margin-bottom: 1em;
+  width: 10em;
+
+  text-align: center;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 1em;
+  width: 20em;
+  padding-top: 1.5em;
+  text-align: center;
+}
+
+select {
+  margin-left: 9em;
+  margin-bottom: 0;
+  right: center;
+}
+
+/* fieldset coordonnees */
+
+fieldset#coordonnees {
+  background: #A4D8EE;
+  border: outset #A4D8EE;
+  text-align: center;
+}
+
+#coordonnees label {
+  position: absolute;
+
+
+  right: middle;
+}
+
+#coordonnees input {
+  margin-left: 9em;
+  line-height: 1.4em;
+  margin-bottom: .2em;
+  text-align: center;
+}
+
+/* fieldset message */
+
+fieldset#message {
+  background: #9DF2CE;
+  border: outset #9DF2CE;
+  text-align: center;
+}
+
+#civilite {
+  font-size: 90%;
+
+  right: center;
+}
+
+#civilite input {
+  margin-left: 9em;
+}
+
+#civilite input + input {
+  margin-left: 1em;
+  right: center;
+}
+
+/* cases a cocher des centres d'interet */
+
+#interets {
+  font-size: 90%;
+  right: center;
+}
+
+#interets input {
+  margin-left: 9em;
+}
+
+#interets input + input {
+  margin-left: 1em;
+}
+
+#interets br + input {
+  margin-left: 9em;
+}
+
+/* zone de texte du message */
+
+textarea {
+  font: .8em "Trebuchet MS", Verdana, sans-serif;
+  width: 20em;
+  padding: .2em;
+}
+
+/* les boutons submit et reset */
+
+input[type="submit"],
+input[type="reset"] {
+  background: #DED983;
+  font: 1.2em "Trebuchet MS", Verdana, sans-serif;
+  color: #345071;
+}
+
+p#buttons {
+  text-align: center;
+}
+
+#menu {
+  float: center;
+  width: 500px;
+  position: relative;
+  left: 30px;
+  top: center;
+
+}
+.erreur {
+  color: red;
+  font-size: 20px;
+}
+
+.validate {
+  color: green;
+  font-size: 20px;
+}

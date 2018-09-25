@@ -6,7 +6,7 @@
     <div class="navbar-nav menu">
       <a class="nav-item nav-link" href="acceuil.php"><i class="fas fa-home"></i> Accueil </a>
       <a class="nav-item nav-link" href="fabrication.php"><i class="fas fa-braille"></i> Notre fabrication</a>
-      <a class="nav-item nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+      <a class="nav-item nav-link" href="contact.php"><i class="fas fa-envelope"></i> Contact</a>
     <?php if(!isset($_SESSION['id'])): ?>
       <a class="nav-item nav-link" href="connexion.php"><i class="fas fa-user"></i> Connexion</a>
     <?php else: ?>

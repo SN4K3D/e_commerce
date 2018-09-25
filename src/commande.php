@@ -4,7 +4,8 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']))
 {
 	if(isset($_SESSION['panier']) AND !empty($_SESSION['panier']))
 	{
-		$panier->commande();
+		$id_panier = $panier->commande();
+		header('Location: ../vendor/paiement.php?id_panier='.$id_panier);
 	}
 	//include '../views/commande.view.php';
 }

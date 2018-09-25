@@ -9,9 +9,9 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
 			{
 				require('../include/connexion_bdd.php');
 				$pass_confirm = htmlspecialchars($_POST['password_confirm']);
-				$pass_confirm = sha1($pass_confirm);
+				$pass_confirm = hash('sha256', $pass_confirm);
 				
-				if($pass_confirm === $_SESSION['id']['user_Passwd'])
+				if($pass_confirm == $_SESSION['id']['user_passwd'])
 				{
 
 					if(isset($_POST['new_pseudo']) && !empty($_POST['new_pseudo']) AND $_POST['new_pseudo'] != $_SESSION['id']['pseudo'])
@@ -55,104 +55,109 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
 					}			
 					
 
-					if(isset($_POST['new_birth']) && !empty($_POST['new_birth']) AND $_POST['new_birth'] != $_SESSION['id']['User_Birthday'])
+					if(isset($_POST['new_birth']) && !empty($_POST['new_birth']) AND $_POST['new_birth'] != $_SESSION['id']['anniversaire'])
 					{
 						$new_birth = htmlspecialchars($_POST['new_birth']);
 						if(strlen($new_birth) < 15)
 						{
-							$insert_birth = $bdd->prepare("UPDATE user SET User_Birthday = ? WHERE id_user = ?");
+							$insert_birth = $bdd->prepare("UPDATE user SET anniversaire = ? WHERE id_user = ?");
 							$insert_birth->execute(array($new_birth, $_SESSION['id']['id_user']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Date de naissance trop longue !";
 					}
 
 
-					if(isset($_POST['new_adresse']) && !empty($_POST['new_adresse']) AND $_POST['new_adresse'] != $user['User_Location'])
+					if(isset($_POST['new_adresse']) && !empty($_POST['new_adresse']) AND $_POST['new_adresse'] != $_SESSION['id']['adresse'])
 					{
 						$new_adresse = htmlspecialchars($_POST['new_adresse']);
 						if(strlen($new_adresse) <= 60)
 						{
-							$insert_adresse = $bdd->prepare("UPDATE user SET User_Location = ? WHERE id_user = ?");
-							$insert_adresse->execute(array($new_adresse, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							$insert_adresse = $bdd->prepare("UPDATE user SET adresse = ? WHERE id_user = ?");
+							$insert_adresse->execute(array($new_adresse, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Adresse trop longue !";
 					}
 
 
-					if(isset($_POST['new_cp']) && !empty($_POST['new_cp']) AND $_POST['new_cp'] != $user['Region'])
+					if(isset($_POST['new_cp']) && !empty($_POST['new_cp']) AND $_POST['new_cp'] != $_SESSION['id']['code_postal'])
 					{
 						$new_cp = htmlspecialchars($_POST['new_cp']);
 						$new_cp = intval($new_cp);
 						if(strlen($new_cp) == 5)
 						{
-							$insert_cp = $bdd->prepare("UPDATE user SET Region = ? WHERE id_user = ?");
-							$insert_cp->execute(array($new_cp, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							$insert_cp = $bdd->prepare("UPDATE user SET code_postal = ? WHERE id_user = ?");
+							$insert_cp->execute(array($new_cp, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Le code postal ne doit pas dépasser 5 chiffres";
 					}
 
 
-					if(isset($_POST['new_pays']) && !empty($_POST['new_pays']) AND $_POST['new_pays'] != $user['Pays'])
+					if(isset($_POST['new_pays']) && !empty($_POST['new_pays']) AND $_POST['new_pays'] != $_SESSION['id']['pays'])
 					{
 						$new_pays = htmlspecialchars($_POST['new_pays']);
 						if(strlen($new_pays) <= 20)
 						{
-							$insert_pays = $bdd->prepare("UPDATE user SET Pays = ? WHERE id_user = ?");
-							$insert_pays->execute(array($new_pays, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							$insert_pays = $bdd->prepare("UPDATE user SET pays = ? WHERE id_user = ?");
+							$insert_pays->execute(array($new_pays, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Votre pays est trop long !";
 					}
 
 
-					if(isset($_POST['new_web']) && !empty($_POST['new_web']) AND $_POST['new_web'] != $user['User_WebSite'])
+					if(isset($_POST['new_ville']) && !empty($_POST['new_ville']) AND $_POST['new_ville'] != $_SESSION['id']['ville'])
 					{
-						$new_web = htmlspecialchars($_POST['new_web']);
-						if(strlen($new_web) <= 100)
+						$new_ville = htmlspecialchars($_POST['new_ville']);
+						if(strlen($new_ville) <= 25)
 						{
-							$insert_web = $bdd->prepare("UPDATE user SET User_WebSite = ? WHERE id_user = ?");
-							$insert_web->execute(array($new_web, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							$insert_ville = $bdd->prepare("UPDATE user SET ville = ? WHERE id_user = ?");
+							$insert_ville->execute(array($new_ville, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
-							$erreur = "Votre site web est trop long !";
+							$erreur = "Votre ville est trop long !";
 					}
 
-					if(isset($_POST['new_Int']) && !empty($_POST['new_Int']) AND $_POST['new_Int'] != $user['User_Interest'])
+					if(isset($_POST['new_Int']) && !empty($_POST['new_Int']) AND $_POST['new_Int'] != $_SESSION['id']['hobby'])
 					{
 						$new_Int = htmlspecialchars($_POST['new_Int']);
 						if(strlen($new_Int) <= 255)
 						{
-							$insert_Int = $bdd->prepare("UPDATE user SET User_Interest = ? WHERE id_user = ?");
-							$insert_Int->execute(array($new_Int, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							foreach($_POST['new_Int'] as $valeur)
+							{
+								$valeur = htmlspecialchars($valeur);
+								$hobby .= $valeur.', ';
+							}
+							$insert_Int = $bdd->prepare("UPDATE user SET hobby = ? WHERE id_user = ?");
+							$insert_Int->execute(array($hobby, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Interêt trop long !";
 					}
 					
-					if(isset($_POST['gender']) && !empty($_POST['gender']) AND $_POST['gender'] != $user['User_Genre'])
+					if(isset($_POST['gender']) && !empty($_POST['gender']) AND $_POST['gender'] != $_SESSION['id']['civilite'])
 					{
 						$gender = htmlspecialchars($_POST['gender']);
 						if(strlen($gender) <= 5)
 						{
-							$insert_Int = $bdd->prepare("UPDATE user SET User_Genre = ? WHERE id_user = ?");
-							$insert_Int->execute(array($gender, $_SESSION['id']));
-							header('Location: profile.php?id='.$_SESSION['id']);
+							$insert_Int = $bdd->prepare("UPDATE user SET civilite = ? WHERE id_user = ?");
+							$insert_Int->execute(array($gender, $_SESSION['id']['id_user']));
+							header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 						}
 						else
 							$erreur = "Genre mal choisie !";
 					}
 
 
-					if(isset($_POST['new_mail']) && !empty($_POST['new_mail']) AND $_POST['new_mail'] != $user['User_Email'])
+					if(isset($_POST['new_mail']) && !empty($_POST['new_mail']) AND $_POST['new_mail'] != $_SESSION['id']['mail_user'])
 					{
 						$new_mail = htmlspecialchars($_POST['new_mail']);
 
@@ -160,14 +165,14 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
 						{
 							if(filter_var($new_mail, FILTER_VALIDATE_EMAIL))
 							{
-								$req_mail = $bdd->prepare("SELECT * FROM user WHERE User_Email = ?");
+								$req_mail = $bdd->prepare("SELECT * FROM user WHERE mail_user = ?");
 								$req_mail->execute(array($new_mail));
 								$mail_exist = $req_mail->rowCount();
 								if($mail_exist == 0)
 								{				
-									$insert_pseudo = $bdd->prepare("UPDATE user SET User_Email = ? WHERE id_user = ?");
-									$insert_pseudo->execute(array($new_mail, $_SESSION['id']));
-									header('Location: profile.php?id='.$_SESSION['id']);
+									$insert_pseudo = $bdd->prepare("UPDATE user SET mail_user = ? WHERE id_user = ?");
+									$insert_pseudo->execute(array($new_mail, $_SESSION['id']['id_user']));
+									header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 								}
 								else
 									$erreur = "Cette adresse mail existe déjà !";
@@ -186,9 +191,9 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
 							$password = htmlspecialchars($_POST['new_password']);
 							if(strlen($password) <= 25)
 							{
-								$mdp1 = sha1($password);
-								$insert_password = $bdd->prepare("UPDATE user SET user_Passwd = ? WHERE id_user = ?");
-								$insert_password->execute(array($mdp1, $_SESSION['id']));
+								$mdp1 = hash('sha256', $password);
+								$insert_password = $bdd->prepare("UPDATE user SET user_passwd = ? WHERE id_user = ?");
+								$insert_password->execute(array($mdp1, $_SESSION['id']['id_user']));
 								$validate = "Sucess votre compte va ce mettra  jour !";
 								header('Location: profile.php?id='.$_SESSION['id']['id_user']);
 							}

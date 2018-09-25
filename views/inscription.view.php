@@ -44,9 +44,9 @@
           <option value="Belgique">Belgique</option>
           <option value="Suisse">Suisse</option>
         </select>
-        <p id="interets"><label>Centres d'intérêts : </label>
+        <p id="interets"><label>Intérêts : </label>
           <input type="checkbox" name="interets[]" value="Sport" />Sport
-          <input type="checkbox" name="interets[]" value="Cinema" />Cinéma<br />
+          <input type="checkbox" name="interets[]" value="Cinéma" />Cinéma<br />
           <input type="checkbox" name="interets[]" value="Internet" />Internet
           <input type="checkbox" name="interets[]" value="Voyages" />Voyages
         </p>
@@ -57,7 +57,7 @@
         <input type="text" name="pseudo" size="25" maxlength="25" value="<?php if(isset($pseudo)){echo $pseudo;} ?>" /><br />
         <label>Mot de passe : </label>
         <input type="password" name="password" size="25" maxlength="25" /><br />
-        <label>Confirmation Mot de passe : </label>
+        <label>Confirmation pass: </label>
         <input type="password" name="password2" size="25" maxlength="25" /><br />
       </fieldset>
       <p id="buttons">

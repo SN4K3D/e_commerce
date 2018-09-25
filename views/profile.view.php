@@ -72,7 +72,7 @@
                       </tr>                     
                     </tbody>
                   </table>                  
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                  <a href="#" class="btn btn-primary">Mes Commandes</a>
                 </div>
               </div>
             </div>

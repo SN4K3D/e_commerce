@@ -20,7 +20,7 @@ p.titre {
 fieldset {
   border: none;
   margin-bottom: 1em;
-  width: 20em;
+  width: 30%;
   padding-top: 1.5em;
   text-align: center;
 }
@@ -47,7 +47,7 @@ fieldset#coordonnees {
 }
 
 #coordonnees input {
-  margin-left: 9em;
+  margin-left: 10em;
   line-height: 1.4em;
   margin-bottom: .2em;
   text-align: center;
@@ -68,7 +68,7 @@ fieldset#message {
 }
 
 #civilite input {
-  margin-left: 9em;
+  margin-left: 5em;
 }
 
 #civilite input + input {
@@ -80,7 +80,6 @@ fieldset#message {
 
 #interets {
   font-size: 90%;
-  right: center;
 }
 
 #interets input {
@@ -133,3 +132,4 @@ p#buttons {
   color: green;
   font-size: 20px;
 }
+
